@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@types/node@^6.0.46":
+  version "6.0.85"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.85.tgz#ec02bfe54a61044f2be44f13b389c6a0e8ee05ae"
+
 abab@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/abab/-/abab-1.0.3.tgz#b81de5f7274ec4e756d797cd834f303642724e5d"
@@ -2419,7 +2423,7 @@ expand-range@^1.8.1:
   dependencies:
     fill-range "^2.1.0"
 
-express@^4.13.3:
+express@^4.13.3, express@^4.15.3:
   version "4.15.3"
   resolved "https://registry.yarnpkg.com/express/-/express-4.15.3.tgz#bab65d0f03aa80c358408972fc700f916944b662"
   dependencies:
@@ -4519,6 +4523,12 @@ parse5@^1.5.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/parse5/-/parse5-1.5.1.tgz#9b7f3b0de32be78dc2401b17573ccaf0f6f59d94"
 
+parse5@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/parse5/-/parse5-3.0.2.tgz#05eff57f0ef4577fb144a79f8b9a967a6cc44510"
+  dependencies:
+    "@types/node" "^6.0.46"
+
 parseurl@~1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/parseurl/-/parseurl-1.3.1.tgz#c8ab8c9223ba34888aa64a297b28853bec18da56"
@@ -5078,6 +5088,10 @@ react-addons-shallow-compare@15.4.1:
   version "15.4.1"
   resolved "https://registry.yarnpkg.com/react-addons-shallow-compare/-/react-addons-shallow-compare-15.4.1.tgz#b68103dd4d13144cb221065f6021de1822bd435a"
 
+react-attr-converter@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/react-attr-converter/-/react-attr-converter-0.3.1.tgz#4a2abf6d907b7ddae4d862dfec80e489ce41ad6e"
+
 react-dev-utils@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-3.0.2.tgz#1a42263e9b6aa11dcb45d69dfe5eb1b354bd5531"
@@ -5130,6 +5144,14 @@ react-leaflet@0.11.7:
   dependencies:
     lodash "^4.0.0"
     warning "^3.0.0"
+
+react-render-html@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/react-render-html/-/react-render-html-0.5.0.tgz#74cbf896b9ab83a1cf3c444ff064373576ff41ec"
+  dependencies:
+    camelcase "^3.0.0"
+    parse5 "^3.0.2"
+    react-attr-converter "^0.3.1"
 
 react-scripts@1.0.10:
   version "1.0.10"
