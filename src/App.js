@@ -6,7 +6,7 @@ import renderHTML from 'react-render-html';
 import './App.css';
 import '../node_modules/leaflet/dist/leaflet.css';
 import feed from './feed';
-import {getInreach, getBlog} from './api.js';
+import {getInreach, getBlogPosts} from './api.js';
 
 
 const tiles = 'https://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png?apikey=050ca160e1704cc3bd050ea3a759e8b9';
@@ -20,7 +20,7 @@ class App extends Component {
         return (
             <div>
                 <RouteMap/>
-                <Posts/>
+                <Blog/>
             </div>
         );
     }
@@ -51,29 +51,44 @@ class RouteMap extends Component {
     }
 }
 
-class Posts extends Component {
+class Blog extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            posts: null
+            blogPosts: null
         };
-
     }
 
     componentDidMount() {
-        getBlog().then((res) => this.setState({posts: res.items}));
+        getBlogPosts().then((res) => {
+            if (res) {
+                this.setState({blogPosts: res.items});
+            }
+        })
     }
 
     render() {
-        if (!this.state.posts) { return null }
+        const {
+            blogPosts,
+        } = this.state;
+
+        if (!blogPosts) {return null;}
 
         return (
             <div>
-                {renderHTML(this.state.posts[0].content)}
+                <Posts blogPosts={this.state.blogPosts}/>
             </div>
         )
     }
 }
+
+const Posts = ({blogPosts}) =>
+    <div>
+        {blogPosts.map((post) =>
+            renderHTML(post.content)
+        )}
+    </div>
+
 
 export default App;
