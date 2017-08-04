@@ -1,19 +1,10 @@
 import React, { Component } from 'react';
 
 import feed from '../../data/feed';
-import L from 'leaflet';
 
-import {Map, TileLayer, Marker, Popup } from 'react-leaflet';
-import omnivore from 'leaflet-omnivore';
-import tj from 'togeojson';
-
-const tiles = 'https://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png?apikey=050ca160e1704cc3bd050ea3a759e8b9';
-const attr = 'Maps © <a href="http://www.thunderforest.com">Thunderforest</a>, Data © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>';
-const mapCenter = [36.499608, -106.274313];
-const mapZoom = 10;
-const testIcon = L.icon({
-    iconUrl: 'marker.png'
-});
+import {Map, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
+import toGEOJSON from 'togeojson';
+import mapConfig from './mapConfig';
 
 class RouteMap extends Component {
 
@@ -31,7 +22,7 @@ class RouteMap extends Component {
         // const leafletMap = this.leafletMap.leafletElement;
 
         const dom = (new DOMParser()).parseFromString(feed, 'text/xml');
-        const route = tj.kml(dom);
+        const route = toGEOJSON.kml(dom);
 
         console.log(route);
 
@@ -40,9 +31,6 @@ class RouteMap extends Component {
             // position: [route.features[146].properties.Latitude, route.features[146].properties.Longitude],
             time: route.features[146].properties.Time
         });
-
-        // omnivore.kml.parse(feed).addTo(leafletMap);
-        // getInreach();
     }
 
     render() {
@@ -50,23 +38,26 @@ class RouteMap extends Component {
             <div>
                 <Map
                     ref={m => {this.leafletMap = m;}}
-                    center={mapCenter}
-                    zoom={mapZoom}
+                    center={mapConfig.center}
+                    zoom={mapConfig.zoom}
                 >
                     <TileLayer
-                        attribution={attr}
-                        url={tiles}
+                        attribution={mapConfig.attr}
+                        url={mapConfig.tiles}
                     />
-                    { this.state.route &&
-                        <Marker
-                            position={this.state.position}
-                            icon={testIcon}
-                        >
-                            {/* <Popup>
-                                <span>{this.state.time}</span>
-                            </Popup> */}
-                        </Marker>
-                    }
+                    {/* Colorado trail route */}
+                    <Polyline
+                        color='purple'
+                        positions={mapConfig.routes.ct}
+                    />
+                    {/* start and end markers */}
+                    <Marker
+                        position={mapConfig.markers.start}
+                    />
+                    <Marker
+                        position={mapConfig.markers.end}
+                    />
+
                 </Map>
             </div>
         );
