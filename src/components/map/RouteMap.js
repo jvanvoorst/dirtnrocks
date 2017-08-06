@@ -13,7 +13,7 @@ class RouteMap extends Component {
 
         this.state = {
             route: null,
-            position: [37.018936, -106.449043],
+            center: mapConfig.center,
             time: ''
         };
     }
@@ -40,6 +40,7 @@ class RouteMap extends Component {
                     ref={m => {this.leafletMap = m;}}
                     center={mapConfig.center}
                     zoom={mapConfig.zoom}
+                    scrollWheelZoom={false}
                 >
                     <TileLayer
                         attribution={mapConfig.attr}
@@ -53,9 +54,11 @@ class RouteMap extends Component {
                     {/* start and end markers */}
                     <Marker
                         position={mapConfig.markers.start}
+                        color='red'
                     />
                     <Marker
                         position={mapConfig.markers.end}
+                        color='green'
                     />
 
                 </Map>

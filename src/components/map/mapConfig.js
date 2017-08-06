@@ -5,8 +5,8 @@ import ctJSON from '../../data/ct.json';
 export default {
     tiles: 'https://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png?apikey=050ca160e1704cc3bd050ea3a759e8b9',
     attr: 'Maps © <a href="http://www.thunderforest.com">Thunderforest</a>, Data © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>',
-    center: [36.499608, -106.274313],
-    zoom: 10,
+    center: [38.4858, -106.4795],
+    zoom: 8,
     locationIcon: L.icon({
         iconUrl: marker,
         iconSize: [50, 50]
