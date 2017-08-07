@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { getInreach } from '../../api/api';
 import {Map, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
 import mapConfig from './mapConfig';
-import L from 'leaflet';
+import '../../Leaflet.awesome-markers/dist/leaflet.awesome-markers.css';
 
 class RouteMap extends Component {
 
@@ -52,6 +52,10 @@ class RouteMap extends Component {
             liveStarts
         } = this.state;
 
+        const {
+            loggedIn
+        } = this.props
+
         return (
             <div>
                 <Map
@@ -69,15 +73,18 @@ class RouteMap extends Component {
                         color='purple'
                         positions={mapConfig.routes.ct}
                     />
-                    {/* start and end markers */}
-                    <Marker
-                        position={mapConfig.markers.start}
-                    />
+                    { loggedIn &&
+                        <Marker
+                            position={mapConfig.markers.start}
+                            icon={mapConfig.icons.start}
+                        />
+                    }
                     <Marker
                         position={mapConfig.markers.end}
+                        icon={mapConfig.icons.end}
                     />
                     {/* Live track */}
-                    { liveRoute &&
+                    { liveRoute && loggedIn &&
                         <Polyline
                             color='blue'
                             positions={liveRoute}
@@ -89,6 +96,7 @@ class RouteMap extends Component {
                             <Marker
                                 key={item[0]}
                                 position={[item[0], item[1]]}
+                                icon={mapConfig.icons.location}
                             >
                                 <Popup>
                                     <span>{[item[2]]}</span>

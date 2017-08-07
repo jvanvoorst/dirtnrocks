@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import './blog.css';
 import { getBlogPosts } from '../../api/api.js';
 import renderHTML from 'react-render-html';
+import { Container } from 'semantic-ui-react';
 
 class Blog extends Component {
     constructor(props) {
@@ -18,6 +20,7 @@ class Blog extends Component {
             if (res) {
                 this.setState({blogPosts: res.items});
             }
+            console.log(res);
         });
     }
 
@@ -35,14 +38,54 @@ class Blog extends Component {
 }
 
 const Posts = ({blogPosts}) =>
-    <div>
-        {blogPosts.map((post) =>
-            renderHTML(post.content)
+    <Container className="posts">
+        {blogPosts.map((post) => {
+            return (
+                <div key={post.id} style={style.post}>
+                    <p style={style.postDate}>{formatDate(post.published)}</p>
+                    <p style={style.postTitle}>{post.title}</p>
+                    {renderHTML(post.content)}
+                </div>
+            );
+
+        }
         )}
-    </div>;
+    </Container>;
 
 Posts.propTypes = {
     blogPosts: PropTypes.array.isRequired
 };
 
 export default Blog;
+
+const style = {
+    post: {
+        paddingLeft: '30px',
+        paddingRight: '30px'
+    },
+    postTitle: {
+        fontSize: '22px',
+        fontWeight: '600',
+        color: 'rgb(255, 100, 7)'
+    },
+    postDate: {
+        paddingTop: '60px',
+        fontWeight: '600'
+    }
+};
+
+function formatDate(date) {
+    date = new Date(date);
+    const monthNames = [
+        'January', 'February', 'March',
+        'April', 'May', 'June', 'July',
+        'August', 'September', 'October',
+        'November', 'December'
+    ];
+
+    const day = date.getDay();
+    const monthIndex = date.getMonth();
+    const year = date.getFullYear();
+
+    return `${day} ${monthNames[monthIndex]} ${year}`;
+}
