@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Container, Button } from 'semantic-ui-react';
-import Menubar from './Menubar';
 
 const Header = ({children}) =>
     <Container fluid>

@@ -1,33 +1,25 @@
 {
-  "name": "dirtnrocks",
-  "version": "0.1.0",
+  "name": "api-server",
+  "version": "0.0.1",
   "private": true,
   "dependencies": {
     "axios": "^0.16.2",
-    "express": "^4.15.3",
-    "leaflet": "0.7.7",
-    "leaflet-omnivore": "^0.3.4",
-    "prop-types": "^15.5.10",
-    "react": "15.4.1",
-    "react-addons-shallow-compare": "15.4.1",
-    "react-dom": "15.4.1",
-    "react-leaflet": "0.11.7",
-    "react-leaflet-control": "1.2.0",
-    "react-render-html": "^0.5.0",
-    "react-responsive": "^1.3.4",
-    "semantic-ui-css": "^2.2.11",
-    "semantic-ui-react": "^0.71.2",
-    "togeojson": "^0.16.0"
-  },
-  "devDependencies": {
-    "eslint": "^3.19.0",
-    "eslint-plugin-react": "^7.0.1",
-    "react-scripts": "1.0.10"
+    "babel-core": "6.14.0",
+    "express": "4.13.3"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "NODE_ENV=production react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "concurrently \"yarn server\" \"yarn client\"",
+    "server": "node server.js",
+    "client": "node start-client.js",
+    "dev": "echo \"This command has been deprecated. Use 'npm start'\" && exit 1",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "concurrently": "^3.5.0",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "14.1.0",
+    "eslint-plugin-import": "2.2.0",
+    "eslint-plugin-jsx-a11y": "4.0.0",
+    "eslint-plugin-react": "6.9.0"
   }
 }

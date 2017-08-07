@@ -1,9 +1,15 @@
 import axios from 'axios';
+import toGEOJSON from 'togeojson';
 
 function getInreach() {
-    axios.get('localhost:9000/api')
-        .then((res) => console.log(res))
-        .catch((error) => console.warn(error));
+    return (
+        axios.get('api/inreach')
+        .then((res) => {
+            const dom = (new DOMParser()).parseFromString(res.data, 'text/xml');
+            return toGEOJSON.kml(dom);
+        })
+        .catch((error) => console.warn(error)) // eslint-disable-line no-console
+    );
 }
 
 function getBlogPosts() {
@@ -19,7 +25,7 @@ function getBlogPosts() {
         }
     })
         .then((res) => res.data)
-        .catch((error) => console.warn(error));
+        .catch((error) => console.warn(error)); // eslint-disable-line no-console
 }
 
 export {getInreach, getBlogPosts};

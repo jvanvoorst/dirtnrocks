@@ -17,8 +17,8 @@ export default {
     },
     routes: {
         ct: ctJSON.features[0].geometry.coordinates.reduce((acc, [long, lat]) => {
-                acc.push([lat, long]);
-                return acc;
-            }, []),
+            acc.push([lat, long]);
+            return acc;
+        }, []),
     }
 };
