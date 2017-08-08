@@ -27,5 +27,11 @@ const getInreach = function(req, res) {
         }
     })
     .then((response) => res.send(response.data))
-    .catch((error) => console.warn(error)); // eslint-disable-line no-console
+    .catch((error) => {
+        if (error.response) {
+            if (error.response.status === 401) {
+                res.send(error.response.status);
+            }
+        }
+    });
 };

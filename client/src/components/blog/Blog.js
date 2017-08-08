@@ -16,11 +16,11 @@ class Blog extends Component {
     }
 
     componentDidMount() {
-        getBlogPosts().then((res) => {
-            if (res) {
-                this.setState({blogPosts: res.items});
-            }
-        });
+        // getBlogPosts().then((res) => {
+        //     if (res) {
+        //         this.setState({blogPosts: res.items});
+        //     }
+        // });
     }
 
     render() {

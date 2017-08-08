@@ -15,47 +15,61 @@ class Map extends Component {
             liveRoute: [],
             liveStarts: [],
             modalOpen: false,
-            password: ''
+            password: '',
+            getInreachFail: false,
+            submitButtonVisible: true,
+            getInreachLoading: false
         };
 
-        this.fetchInreach = this.fetchInreach.bind(this);
+        this.handleSubmitLogin = this.handleSubmitLogin.bind(this);
         this.handleOpenModal = this.handleOpenModal.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);
     }
 
-    fetchInreach() {
-        console.log(this.state.password);
+    handleSubmitLogin() {
 
-        getInreach(this.state.password).then((res) => {
-
-            const track = res.features
-            .filter((item) => item.properties.description === 'Kristie Van Voorst\'s track log')[0]
-            .geometry.coordinates
-            .reduce((acc, [long, lat]) => {
-                acc.push([lat, long]);
-                return acc;
-            }, []);
-
-            const trackStarts = res.features
-            .filter((item) => item.properties.Event === 'Tracking turned on from device.')
-            .reduce((acc, item) => {
-                acc.push([Number(item.properties.Latitude), Number(item.properties.Longitude), item.properties.Time]);
-                return acc;
-            }, []);
-
-
-            this.setState({
-                liveRoute: track,
-                liveStarts: trackStarts,
-                modalOpen: false
-            });
+        this.setState({
+            getInreachLoading: true
         });
+
+        getInreach(this.state.password)
+            .then((res) => {
+                const track = res.features
+                .filter((item) => item.properties.description === 'Kristie Van Voorst\'s track log')[0]
+                .geometry.coordinates
+                .reduce((acc, [long, lat]) => {
+                    acc.push([lat, long]);
+                    return acc;
+                }, []);
+
+                const trackStarts = res.features
+                .filter((item) => item.properties.Event === 'Tracking turned on from device.')
+                .reduce((acc, item) => {
+                    acc.push([Number(item.properties.Latitude), Number(item.properties.Longitude), item.properties.Time]);
+                    return acc;
+                }, []);
+
+
+                this.setState({
+                    liveRoute: track,
+                    liveStarts: trackStarts,
+                    modalOpen: false,
+                    submitButtonVisible: false
+                });
+            })
+            .catch((error) => {
+                this.setState({
+                    getInreachFail: true,
+                    password: '',
+                    getInreachLoading: false
+                });
+                console.warn(error);
+            });
     }
 
     handleOpenModal = (event) => this.setState({modalOpen: true})
     handleCloseModal = (event) => this.setState({modalOpen: false})
 
-    handleSubmitLogin = () => this.fetchInreach()
     handlePasswordChange = (event, {value}) => {
         this.setState({password: value})
     }
@@ -65,7 +79,10 @@ class Map extends Component {
             liveRoute,
             liveStarts,
             modalOpen,
-            password
+            password,
+            submitButtonVisible,
+            getInreachFail,
+            getInreachLoading
         } = this.state;
 
         return (
@@ -76,6 +93,7 @@ class Map extends Component {
                 />
                 <MapKey
                     openModal={this.handleOpenModal}
+                    submitButtonVisible={submitButtonVisible}
                 />
                 <LoginModal
                     modalOpen={modalOpen}
@@ -83,6 +101,8 @@ class Map extends Component {
                     submitLogin={this.handleSubmitLogin}
                     passwordChange={this.handlePasswordChange}
                     password={password}
+                    getInreachFail={getInreachFail}
+                    getInreachLoading={getInreachLoading}
                 />
             </div>
         );
