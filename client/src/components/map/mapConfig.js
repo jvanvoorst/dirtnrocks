@@ -1,6 +1,6 @@
 import L from 'leaflet';
 import ctJSON from '../../data/ct.json';
-import AwesomeMarkers from '../../Leaflet.awesome-markers/dist/leaflet.awesome-markers.js';
+import AwesomeMarkers from '../../Leaflet.awesome-markers/dist/leaflet.awesome-markers.js'; // eslint-disable-line no-unused-vars
 
 L.AwesomeMarkers.Icon.prototype.options.prefix = 'ion';
 
@@ -23,7 +23,7 @@ export default {
             markerColor: 'red'
         }),
         location: L.AwesomeMarkers.icon({
-            icon: 'record',
+            icon: 'android-bicycle',
             markerColor: 'blue'
         }),
     },
