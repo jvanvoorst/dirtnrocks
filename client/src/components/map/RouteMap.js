@@ -54,8 +54,8 @@ const RouteMap = ({liveRoute, liveStarts}) =>
     </Map>;
 
 RouteMap.propTypes = {
-    liveRoute: PropTypes.object.isRequired,
-    liveStarts: PropTypes.object.isRequired
+    liveRoute: PropTypes.array.isRequired,
+    liveStarts: PropTypes.array.isRequired
 };
 
 export default RouteMap;

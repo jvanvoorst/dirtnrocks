@@ -1,9 +1,13 @@
 import axios from 'axios';
 import toGEOJSON from 'togeojson';
 
-function getInreach() {
+function getInreach(password) {
     return (
-        axios.get('api/inreach')
+        axios.get('api/inreach', {
+            params: {
+                password: password
+            }
+        })
         .then((res) => {
             const dom = (new DOMParser()).parseFromString(res.data, 'text/xml');
             return toGEOJSON.kml(dom);

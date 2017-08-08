@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 
 import { Container, Button } from 'semantic-ui-react';
 
-const MapKey = ({fetchInreach}) =>
+const MapKey = ({openModal}) =>
     <Container fluid style={style.container}>
         <Button
             style={style.button}
-            onClick={fetchInreach}
+            onClick={openModal}
         >
             Login
         </Button>
@@ -35,7 +35,7 @@ const style = {
 };
 
 MapKey.propTypes = {
-    fetchInreach: PropTypes.func.isRequired
+    openModal: PropTypes.func.isRequired
 };
 
 export default MapKey;

@@ -20,7 +20,6 @@ class Blog extends Component {
             if (res) {
                 this.setState({blogPosts: res.items});
             }
-            console.log(res);
         });
     }
 
