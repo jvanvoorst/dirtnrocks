@@ -12,9 +12,6 @@ function getInreach(password) {
             const dom = (new DOMParser()).parseFromString(res.data, 'text/xml');
             return toGEOJSON.kml(dom);
         })
-        // .catch((error) => {
-        //     console.warn(error); // eslint-disable-line no-console
-        // })
     );
 }
 

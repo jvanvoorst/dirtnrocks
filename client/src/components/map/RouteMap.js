@@ -5,11 +5,12 @@ import {Map, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
 import mapConfig from './mapConfig';
 import '../../Leaflet.awesome-markers/dist/leaflet.awesome-markers.css';
 
-const RouteMap = ({liveRoute, liveStarts}) =>
+const RouteMap = ({liveRoute, liveStarts, liveLocation}) =>
     <Map
         ref={m => {this.leafletMap = m;}}
-        center={mapConfig.center}
-        zoom={mapConfig.zoom}
+        // center={mapConfig.center}
+        // zoom={mapConfig.zoom}
+        bounds={mapConfig.bounds}
         scrollWheelZoom={false}
     >
         <TileLayer
@@ -37,25 +38,40 @@ const RouteMap = ({liveRoute, liveStarts}) =>
                 positions={liveRoute}
             />
         }
-        {/* Live point where tracking is started ie camp */}
-        { liveStarts &&
-            liveStarts.map((item) =>
-            <Marker
-                key={item[0]}
-                position={[item[0], item[1]]}
-                icon={mapConfig.icons.location}
+        {/* Live location */}
+        { liveLocation &&
+            liveLocation.map((item) =>
+                <Marker
+                    key={item[2]}
+                    position={[item[0], item[1]]}
+                    icon={mapConfig.icons.location}
                 >
                     <Popup>
-                        <span>{[item[2]]}</span>
+                        <span>{item[2]}</span>
                     </Popup>
                 </Marker>
             )
+        }
+        {/* Live point where tracking is started ie camp */}
+        { liveStarts &&
+            liveStarts.map((item) =>
+                <Marker
+                    key={item[0]}
+                    position={[item[0], item[1]]}
+                    icon={mapConfig.icons.camp}
+                    >
+                        <Popup>
+                            <span>{[item[2]]}</span>
+                        </Popup>
+                    </Marker>
+                )
         }
     </Map>;
 
 RouteMap.propTypes = {
     liveRoute: PropTypes.array.isRequired,
-    liveStarts: PropTypes.array.isRequired
+    liveStarts: PropTypes.array.isRequired,
+    liveLocation: PropTypes.array.isRequired
 };
 
 export default RouteMap;

@@ -19,7 +19,7 @@ app.listen(port, function() {
 });
 
 const getInreach = function(req, res) {
-    const url = 'https://share.delorme.com/feed/share/kristievanvoorst?d1=2017-04-13&d2=2017-04-17';
+    const url = 'https://share.delorme.com/feed/share/kristievanvoorst?d1=2017-04-15&d2=2017-04-16';
     axios.get(url, {
         auth: {
             username: null,
@@ -30,7 +30,7 @@ const getInreach = function(req, res) {
     .catch((error) => {
         if (error.response) {
             if (error.response.status === 401) {
-                res.send(error.response.status);
+                res.sendStatus(error.response.status);
             }
         }
     });

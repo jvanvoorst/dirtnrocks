@@ -9,6 +9,7 @@ export default {
     attr: 'Maps © <a href="http://www.thunderforest.com">Thunderforest</a>, Data © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>',
     center: [38.4858, -106.4795],
     zoom: 8,
+    bounds: [[37.250, -108.1549], [40.220, -108.1549], [40.220, -104.8206], [37.250, -104.8206]],
     icons: {
         start: L.AwesomeMarkers.icon({
             icon: 'home',

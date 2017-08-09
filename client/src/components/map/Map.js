@@ -14,6 +14,7 @@ class Map extends Component {
         this.state = {
             liveRoute: [],
             liveStarts: [],
+            liveLocation: [],
             modalOpen: false,
             password: '',
             getInreachFail: false,
@@ -34,25 +35,28 @@ class Map extends Component {
 
         getInreach(this.state.password)
             .then((res) => {
+
                 const track = res.features
-                .filter((item) => item.properties.description === 'Kristie Van Voorst\'s track log')[0]
-                .geometry.coordinates
-                .reduce((acc, [long, lat]) => {
-                    acc.push([lat, long]);
-                    return acc;
-                }, []);
+                    .filter((item) => item.properties.description === 'Kristie Van Voorst\'s track log')[0]
+                    .geometry.coordinates
+                    .reduce((acc, [long, lat]) => {
+                        acc.push([lat, long]);
+                        return acc;
+                    }, []);
 
                 const trackStarts = res.features
-                .filter((item) => item.properties.Event === 'Tracking turned on from device.')
-                .reduce((acc, item) => {
-                    acc.push([Number(item.properties.Latitude), Number(item.properties.Longitude), item.properties.Time]);
-                    return acc;
-                }, []);
+                    .filter((item) => item.properties.Event === 'Tracking turned on from device.')
+                    .reduce((acc, item) => {
+                        acc.push([Number(item.properties.Latitude), Number(item.properties.Longitude), item.properties.Time]);
+                        return acc;
+                    }, []);
 
+                const location = findLocation(res.features);
 
                 this.setState({
                     liveRoute: track,
                     liveStarts: trackStarts,
+                    liveLocation: location,
                     modalOpen: false,
                     submitButtonVisible: false
                 });
@@ -78,6 +82,7 @@ class Map extends Component {
         const {
             liveRoute,
             liveStarts,
+            liveLocation,
             modalOpen,
             password,
             submitButtonVisible,
@@ -90,6 +95,7 @@ class Map extends Component {
                 <RouteMap
                     liveRoute={liveRoute}
                     liveStarts={liveStarts}
+                    liveLocation={liveLocation}
                 />
                 <MapKey
                     openModal={this.handleOpenModal}
@@ -110,3 +116,11 @@ class Map extends Component {
 }
 
 export default Map;
+
+const findLocation = (locations) => {
+    const points = locations.filter((item) => item.geometry.type === 'Point');
+    const last = points[points.length - 1];
+
+    return [[Number(last.properties.Latitude), Number(last.properties.Longitude), last.properties.Time]];
+
+}
