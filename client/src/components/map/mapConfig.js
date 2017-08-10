@@ -13,15 +13,15 @@ export default {
     icons: {
         start: L.AwesomeMarkers.icon({
             icon: 'home',
-            markerColor: 'green'
+            markerColor: 'cadetblue'
         }),
         end: L.AwesomeMarkers.icon({
             icon: 'home',
-            markerColor: 'red'
+            markerColor: 'darkred'
         }),
         camp: L.AwesomeMarkers.icon({
             icon: 'record',
-            markerColor: 'red'
+            markerColor: 'darkpurple'
         }),
         location: L.AwesomeMarkers.icon({
             icon: 'android-bicycle',

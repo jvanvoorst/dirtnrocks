@@ -71,8 +71,8 @@ class Map extends Component {
             });
     }
 
-    handleOpenModal = (event) => this.setState({modalOpen: true})
-    handleCloseModal = (event) => this.setState({modalOpen: false})
+    handleOpenModal = (event) => this.setState({ modalOpen: true })
+    handleCloseModal = (event) => this.setState({ modalOpen: false })
 
     handlePasswordChange = (event, {value}) => {
         this.setState({password: value})

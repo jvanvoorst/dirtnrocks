@@ -23,7 +23,7 @@ function getBlogPosts() {
         params: {
             fetchImages: true,
             orderBy: 'published',
-            startDate: '2017-04-01T00:00:00Z',
+            startDate: '2017-08-01T00:00:00Z',
             key: key
         }
     })

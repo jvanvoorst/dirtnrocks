@@ -8,8 +8,6 @@ import '../../Leaflet.awesome-markers/dist/leaflet.awesome-markers.css';
 const RouteMap = ({liveRoute, liveStarts, liveLocation}) =>
     <Map
         ref={m => {this.leafletMap = m;}}
-        // center={mapConfig.center}
-        // zoom={mapConfig.zoom}
         bounds={mapConfig.bounds}
         scrollWheelZoom={false}
     >

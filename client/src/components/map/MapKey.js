@@ -14,7 +14,11 @@ const MapKey = ({openModal, submitButtonVisible}) =>
             </Button>
         }
         <Container>
-            <p style={style.text}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p style={style.text}>I am Kristie Van Voorst and this is my website created to track my ride on the Colorado Trail.
+                The purple line is the Colorado Trail (the CT). This is the hiker’s trail in its entirety so there will be several
+                places where I will have to divert around wilderness areas where bicycles aren’t allowed. Don’t be alarmed if
+                you see me off course. Each day as I track my ride a blue line will follow me. My current location is the light
+                blue marker. The purple markers are my previous night’s camp. </p>
         </Container>
     </Container>;
 
