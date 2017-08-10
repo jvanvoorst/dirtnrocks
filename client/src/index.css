@@ -1,4 +1,19 @@
 .leaflet-container {
     height: 700px;
-    width: 100%;
+    width: 100vw;
+}
+/* center and reduce the width to 90% for smaller screens */
+@media screen and (max-width: 1024px) {
+    .leaflet-container {
+        margin: auto;
+        height: 600px;
+        width: 90vw;
+    }
+}
+@media screen and (max-width: 768px) {
+    .leaflet-container {
+        margin: auto;
+        height: 550px;
+        width: 90vw;
+    }
 }
