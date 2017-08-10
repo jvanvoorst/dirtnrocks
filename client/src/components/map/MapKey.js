@@ -14,7 +14,7 @@ const MapKey = ({openModal, submitButtonVisible}) =>
             </Button>
         }
         <Container>
-            <p style={style.text}>I am Kristie Van Voorst and this is my website; created to track my ride on the Colorado Trail.
+            <p style={style.text}>My name is Kristie and this is my website; created to track my ride on the Colorado Trail.
                 The purple line is the Colorado Trail (the CT). This is the hiker’s trail in its entirety so there will be several
                 places where I will have to divert around wilderness areas where bicycles aren’t allowed. Don’t be alarmed if
                 you see me off course. Each day as I track my ride a blue line will follow me. My current location is the light

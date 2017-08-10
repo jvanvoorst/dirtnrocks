@@ -5,8 +5,10 @@ import AwesomeMarkers from '../../Leaflet.awesome-markers/dist/leaflet.awesome-m
 L.AwesomeMarkers.Icon.prototype.options.prefix = 'ion';
 
 export default {
-    tiles: 'https://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png?apikey=050ca160e1704cc3bd050ea3a759e8b9',
-    attr: 'Maps © <a href="http://www.thunderforest.com">Thunderforest</a>, Data © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>',
+    // tiles: 'https://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png?apikey=050ca160e1704cc3bd050ea3a759e8b9',
+    tiles: 'http://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.png',
+    // attr: 'Maps © <a href="http://www.thunderforest.com">Thunderforest</a>, Data © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>',
+    attr: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     center: [38.4858, -106.4795],
     zoom: 8,
     bounds: [[37.250, -108.1549], [40.220, -108.1549], [40.220, -104.8206], [37.250, -104.8206]],
@@ -29,8 +31,8 @@ export default {
         }),
     },
     markers: {
-        start: [40.0596, -105.2086],
-        end: [37.2811, -107.8540]
+        start: [40.0618, -105.2069],
+        end: [37.2812, -107.8584]
     },
     routes: {
         ct: ctJSON.features[0].geometry.coordinates.reduce((acc, [long, lat]) => {
