@@ -14,19 +14,13 @@ app.get('/api/inreach', function(req, res) {
     getInreach(req, res);
 });
 
-// const port = 3001;
-
-// app.listen(port, function() {
-//     console.log(`Server running on port ${port}`); // eslint-disable-line no-console
-// });
-
 app.listen(app.get('port'), () => {
     console.log(`Find the server at: http://localhost:${app.get('port')}/`); // eslint-disable-line no-console
 });
 
 
 const getInreach = function(req, res) {
-    const url = 'https://share.delorme.com/feed/share/kristievanvoorst?d1=2017-04-15&d2=2017-04-16';
+    const url = 'https://share.delorme.com/feed/share/kristievanvoorst?d1=2017-08-10';
     axios.get(url, {
         auth: {
             username: null,
