@@ -16,7 +16,7 @@ const style = {
     headerText: {
         fontSize: '50px',
         fontWeight: '600',
-        paddingLeft: '30px',
+        paddingLeft: window.innerWidth <= 768 ? '' : '30px',
         paddingTop: '32px',
         display: 'inline-block',
         color: 'rgb(174,245,42)'
