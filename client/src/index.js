@@ -8,4 +8,4 @@ import 'leaflet/dist/leaflet.css';
 import 'semantic-ui-css/semantic.min.css';
 
 ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();;
+registerServiceWorker();
