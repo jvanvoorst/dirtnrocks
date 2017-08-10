@@ -15,7 +15,7 @@ app.get('/api/inreach', function(req, res) {
 });
 
 app.listen(app.get('port'), () => {
-    console.log(`Find the server at: http://localhost:${app.get('port')}/`); // eslint-disable-line no-console
+    console.log(`Running in ${process.env.NODE_ENV} at: http://localhost:${app.get('port')}/`); // eslint-disable-line no-console
 });
 
 
