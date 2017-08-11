@@ -5,6 +5,7 @@ import '../../Leaflet.awesome-markers/dist/leaflet.awesome-markers.css';
 import MapKey from './MapKey';
 import RouteMap from './RouteMap';
 import LoginModal from './LoginModal';
+import mapConfig from './mapConfig';
 
 class Map extends Component {
 
@@ -19,12 +20,16 @@ class Map extends Component {
             password: '',
             getInreachFail: false,
             submitButtonVisible: true,
-            getInreachLoading: false
+            getInreachLoading: false,
+            bounds: mapConfig.bounds,
+            zoomState: 'overview'
         };
 
         this.handleSubmitLogin = this.handleSubmitLogin.bind(this);
         this.handleOpenModal = this.handleOpenModal.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);
+        this.handleLocationClick = this.handleLocationClick.bind(this);
+        this.handleOverviewClick = this.handleOverviewClick.bind(this);
     }
 
     handleSubmitLogin() {
@@ -51,12 +56,10 @@ class Map extends Component {
                         return acc;
                     }, []);
 
-                const location = findLocation(res.features);
-
                 this.setState({
                     liveRoute: track,
                     liveStarts: trackStarts,
-                    liveLocation: location,
+                    liveLocation: findLocation(res.features),
                     modalOpen: false,
                     submitButtonVisible: false
                 });
@@ -78,6 +81,20 @@ class Map extends Component {
         this.setState({password: value})
     }
 
+    handleLocationClick = () => {
+        const newLocation = calcBounds(this.state.liveLocation[0], mapConfig.locationZoomFactor)
+        this.setState({
+            bounds: newLocation,
+            zoomState: 'location'
+         });
+    }
+
+    handleOverviewClick = () =>
+        this.setState({
+            bounds: mapConfig.bounds,
+            zoomState: 'overview'
+        });
+
     render() {
         const {
             liveRoute,
@@ -87,7 +104,9 @@ class Map extends Component {
             password,
             submitButtonVisible,
             getInreachFail,
-            getInreachLoading
+            getInreachLoading,
+            bounds,
+            zoomState
         } = this.state;
 
         return (
@@ -96,6 +115,10 @@ class Map extends Component {
                     liveRoute={liveRoute}
                     liveStarts={liveStarts}
                     liveLocation={liveLocation}
+                    handleLocationClick={this.handleLocationClick}
+                    handleOverviewClick={this.handleOverviewClick}
+                    bounds={bounds}
+                    zoomState={zoomState}
                 />
                 <MapKey
                     openModal={this.handleOpenModal}
@@ -124,3 +147,5 @@ const findLocation = (locations) => {
     return [[Number(last.properties.Latitude), Number(last.properties.Longitude), last.properties.Time]];
 
 }
+
+const calcBounds = ([lat, lng], factor) => [ [lat+factor, lng+factor], [lat+factor, lng-factor], [lat-factor, lng-factor], [lat-factor, lng+factor] ]

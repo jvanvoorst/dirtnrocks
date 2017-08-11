@@ -12,6 +12,7 @@ export default {
     center: [38.4858, -106.4795],
     zoom: 8,
     bounds: [[37.250, -108.1549], [40.220, -108.1549], [40.220, -104.8206], [37.250, -104.8206]],
+    locationZoomFactor: .07,
     icons: {
         start: L.AwesomeMarkers.icon({
             icon: 'home',

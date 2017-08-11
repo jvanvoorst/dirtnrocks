@@ -29,7 +29,7 @@ const LoginModal = ({
                     <p style={style.passwordError}>Incorrect password</p>
                 }
                 <Input
-                    autofocus
+                    autoFocus
                     placeholder='password'
                     type='password'
                     value={password}

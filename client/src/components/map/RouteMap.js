@@ -2,19 +2,38 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {Map, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
+import Control from 'react-leaflet-control';
 import mapConfig from './mapConfig';
 import '../../Leaflet.awesome-markers/dist/leaflet.awesome-markers.css';
+import MapControl from './MapControl';
 
-const RouteMap = ({liveRoute, liveStarts, liveLocation}) =>
+const RouteMap = ({
+    liveRoute,
+    liveStarts,
+    liveLocation,
+    handleLocationClick,
+    handleOverviewClick,
+    bounds,
+    zoomState
+}) =>
     <Map
         ref={m => {this.leafletMap = m;}}
-        bounds={mapConfig.bounds}
+        bounds={bounds}
         scrollWheelZoom={false}
     >
         <TileLayer
             attribution={mapConfig.attr}
             url={mapConfig.tiles}
         />
+        { liveLocation.length &&
+            <Control position='topright'>
+                <MapControl
+                    handleLocationClick={handleLocationClick}
+                    handleOverviewClick={handleOverviewClick}
+                    zoomState={zoomState}
+                />
+            </Control>
+        }
         {/* Colorado trail route */}
         <Polyline
             color='purple'
@@ -69,7 +88,11 @@ const RouteMap = ({liveRoute, liveStarts, liveLocation}) =>
 RouteMap.propTypes = {
     liveRoute: PropTypes.array.isRequired,
     liveStarts: PropTypes.array.isRequired,
-    liveLocation: PropTypes.array.isRequired
+    liveLocation: PropTypes.array.isRequired,
+    handleLocationClick: PropTypes.func.isRequired,
+    handleOverviewClick: PropTypes.func.isRequired,
+    bounds: PropTypes.array.isRequired,
+    zoomState: PropTypes.string.isRequired
 };
 
 export default RouteMap;

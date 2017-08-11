@@ -5181,9 +5181,11 @@ react-error-overlay@^1.0.9:
     settle-promise "1.0.0"
     source-map "0.5.6"
 
-react-leaflet-control@1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/react-leaflet-control/-/react-leaflet-control-1.2.0.tgz#eddde584caeac710ef1d412914030984904a8d0b"
+react-leaflet-control@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/react-leaflet-control/-/react-leaflet-control-1.4.0.tgz#b2a34581943e1d3b02062ed7a0ec79e7acc7b923"
+  dependencies:
+    prop-types "^15.5.7"
 
 react-leaflet@0.11.7:
   version "0.11.7"
