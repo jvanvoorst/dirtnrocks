@@ -74,7 +74,7 @@ const style = {
 };
 
 function formatDate(date) {
-    date = new Date(date);
+    const myDate = new Date(date);
     const monthNames = [
         'January', 'February', 'March',
         'April', 'May', 'June', 'July',
@@ -82,9 +82,9 @@ function formatDate(date) {
         'November', 'December'
     ];
 
-    const day = date.getDay();
-    const monthIndex = date.getMonth();
-    const year = date.getFullYear();
+    const day = myDate.getDate();
+    const monthIndex = myDate.getMonth();
+    const year = myDate.getFullYear();
 
     return `${day} ${monthNames[monthIndex]} ${year}`;
 }

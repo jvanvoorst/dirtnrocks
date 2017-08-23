@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Button, Header, Icon, Modal, Input, Loader, Dimmer } from 'semantic-ui-react';
+import { Button, Header, Icon, Modal, Input, Loader, Dimmer, Form } from 'semantic-ui-react';
 
 const LoginModal = ({
     modalOpen,
@@ -28,24 +28,37 @@ const LoginModal = ({
                 { getInreachFail &&
                     <p style={style.passwordError}>Incorrect password</p>
                 }
-                <Input
-                    autoFocus
-                    placeholder='password'
-                    type='password'
-                    value={password}
-                    onChange={passwordChange}
-                />
+                <Form>
+                    <Form.Field>
+                        <Input
+                            autoFocus
+                            placeholder='password'
+                            type='password'
+                            value={password}
+                            onChange={passwordChange}
+                        />
+                    </Form.Field>
+                    <div style={style.buttons}>
+                        <Button
+                            type='submit'
+                            color='blue'
+                            inverted
+                            onClick={submitLogin}
+                        >
+                            <Icon name='checkmark'></Icon>
+                            Submit
+                        </Button>
+                        <Button
+                            color='red'
+                            onClick={closeModal}
+                            inverted
+                        >
+                            <Icon name='x' />
+                            Cancel
+                        </Button>
+                    </div>
+                </Form>
             </Modal.Content>
-            <Modal.Actions>
-                <Button color='blue' onClick={submitLogin} inverted>
-                    <Icon name='checkmark' />
-                    Submit
-                </Button>
-                <Button color='red' onClick={closeModal} inverted>
-                    <Icon name='x' />
-                    Cancel
-                </Button>
-            </Modal.Actions>
         </Modal>;
 
 LoginModal.propTypes = {
@@ -61,6 +74,9 @@ LoginModal.propTypes = {
 const style = {
     passwordError: {
         color: 'red'
+    },
+    buttons: {
+        float: 'right'
     }
 };
 

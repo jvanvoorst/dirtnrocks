@@ -24,15 +24,9 @@ class Map extends Component {
             bounds: mapConfig.bounds,
             zoomState: 'overview'
         };
-
-        this.handleSubmitLogin = this.handleSubmitLogin.bind(this);
-        this.handleOpenModal = this.handleOpenModal.bind(this);
-        this.handleCloseModal = this.handleCloseModal.bind(this);
-        this.handleLocationClick = this.handleLocationClick.bind(this);
-        this.handleOverviewClick = this.handleOverviewClick.bind(this);
     }
 
-    handleSubmitLogin() {
+    handleSubmitLogin = () => {
 
         this.setState({
             getInreachLoading: true
@@ -40,7 +34,6 @@ class Map extends Component {
 
         getInreach(this.state.password)
             .then((res) => {
-
                 const track = res.features
                     .filter((item) => item.properties.description === 'Kristie Van Voorst\'s track log')[0]
                     .geometry.coordinates
